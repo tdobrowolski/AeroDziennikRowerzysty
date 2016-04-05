@@ -18,18 +18,18 @@ def clickAktualnosci(event):
 def clickMojDziennik(event): #funkcja dla klikniecia w Moj Dziennik
     interface.interface2(root, w)
 
-def clickMojeDane(event):
-    interface.interface3(root, w)
+#def clickMojeDane(event):
+#    interface.interface3(root, w)
 
-def clickUstawienia(event):
-    interface.interface4(root, w)
+#def clickUstawienia(event):
+#    interface.interface4(root, w)
 
 interface.interface1(root, w) #zaladowanie karty Aktualnosci
 
-w.tag_bind(interface.menu1, "<ButtonPress-1>", clickAktualnosci) #wezel laczacy klikniecie z funkcja
-w.tag_bind(interface.menu2, "<ButtonPress-1>", clickMojDziennik) #wezel laczacy klikniecie z funkcja
-w.tag_bind(interface.menu3, "<ButtonPress-1>", clickMojeDane) #wezel laczacy klikniecie z funkcja
-w.tag_bind(interface.menu4, "<ButtonPress-1>", clickUstawienia) #wezel laczacy klikniecie z funkcja
+w.tag_bind(interface.get_menu1, "<ButtonPress-1>", clickAktualnosci) #wezel laczacy klikniecie z funkcja
+w.tag_bind(interface.get_menu2, "<ButtonPress-1>", clickMojDziennik) #wezel laczacy klikniecie z funkcja
+#w.tag_bind(interface.menu3, "<ButtonPress-1>", clickMojeDane) #wezel laczacy klikniecie z funkcja
+#w.tag_bind(interface.menu4, "<ButtonPress-1>", clickUstawienia) #wezel laczacy klikniecie z funkcja
 
 w.pack()
 
