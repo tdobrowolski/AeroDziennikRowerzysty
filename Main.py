@@ -1,8 +1,11 @@
+#!/bin/env python -u
 #-*- coding: utf-8 -*-
 import Tkinter
 from Tkinter import *
 import tkFont
 import interface
+import time
+import sys
 
 root = Tk() #otwarcie okna
 root.resizable(0,0) #zablokowanie rozmiaru okna
@@ -12,6 +15,12 @@ root.geometry('800x600+200+200') #rozmiar okna
 #canvas UI
 w = Tkinter.Canvas(root, bd=0, height=600, width=800) #grafiki
 font2 = tkFont.Font(family='Helvetica Neue Thin', size=23, ) #czcionka HN T 23
+
+def intro():
+    intro = Tkinter.PhotoImage(file=r'intro.ppm')
+    root.intro = intro  #zapobiegam wrzuceniu obrazka do smieci
+    w.create_image((0,0), image=intro, anchor='nw', tags=("intro"))
+    w.after(2000, w.delete, "intro") #usun intro po 3 sekundach
 
 def clickAktualnosci(event):
     interface.interface1(root, w)
@@ -28,15 +37,15 @@ def clickMojeDane(event):
 def clickUstawienia(event):
     interface.interface4(root, w)
     menuUp(w)
-    
+
 def menuUp(w):
     w.tag_raise(menu1)
     w.tag_raise(menu2)
     w.tag_raise(menu3)
     w.tag_raise(menu4)
 
-
 interface.interface1(root, w) #zaladowanie karty Aktualnosci
+intro() #zaladowanie 3 sekundowego intro
 
 menu3 = w.create_text(450, 92, anchor=NW, text="Moje dane", font=font2, activefill="#D8D8D8", fill="#ffffff")
 

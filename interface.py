@@ -2,6 +2,9 @@
 import Tkinter
 from Tkinter import *
 import tkFont
+import dbtest
+import dbporady
+import popupdane
 
 
 def interface3(root, w):
@@ -19,12 +22,12 @@ def interface3(root, w):
     w.create_text(37, 167, anchor=NW, text="Wpisane dane", font=font3, tags=("delint"))
     w.create_text(426, 167, anchor=NW, text="Obliczone dane", font=font3, tags=("delint"))
 
-    w.create_text(42, 221.45, anchor=NW, text="Imie: Tobiasz", font=font3) #data - tekst dla karty Wpisane dane
-    w.create_text(42, 261.45, anchor=NW, text="Nazwisko: Dobrowolski", font=font3, tags=("delint"))
-    w.create_text(42, 301.45, anchor=NW, text="Wiek: 19 lat", font=font3, tags=("delint"))
-    w.create_text(42, 341.45, anchor=NW, text="Plec: Mezczyzna", font=font3, tags=("delint"))
-    w.create_text(42, 381.45, anchor=NW, text="Wzrost: 182 cm", font=font3, tags=("delint"))
-    w.create_text(42, 421.45, anchor=NW, text="Waga: 68 kg", font=font3, tags=("delint"))
+    w.create_text(42, 221.45, anchor=NW, text="Imie:" + " " + dbtest.imie_bd, font=font3) #data - tekst dla karty Wpisane dane
+    w.create_text(42, 261.45, anchor=NW, text="Nazwisko:" + " " + dbtest.nazwisko_bd, font=font3, tags=("delint"))
+    w.create_text(42, 301.45, anchor=NW, text="Wiek:" + " " + str(dbtest.wiek_bd) + " lat", font=font3, tags=("delint"))
+    w.create_text(42, 341.45, anchor=NW, text="Plec:" + " " + dbtest.plec_bd, font=font3, tags=("delint"))
+    w.create_text(42, 381.45, anchor=NW, text="Wzrost:" + " " + str(dbtest.wzrost_bd) + " cm", font=font3, tags=("delint"))
+    w.create_text(42, 421.45, anchor=NW, text="Waga:" + " " + str(dbtest.waga_bd) + " kg", font=font3, tags=("delint"))
 
     w.create_text(431, 221.45, anchor=NW, text="Wartosc BMI: 20,53", font=font3, tags=("delint")) #data - tekst dla karty Obliczone dane
     w.create_text(431, 261.45, anchor=NW, text="Przejechane kilometry: 24 km", font=font3, tags=("delint"))
@@ -61,10 +64,12 @@ def interface1(root, w):
 
     w.create_oval(24, 24, 59, 59, fill = "#ffffff", width=0) #avatar
 
-    w.create_text(71, 29, anchor=NW, text="Imie Nazwisko", font=font1, fill="#ffffff") #imie i nazwisko
-    w.create_text(37, 167, anchor=NW, text="Witaj Imie!", font=font3, tags=("delint"))
+    w.create_text(71, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff") #imie i nazwisko
+    w.create_text(37, 167, anchor=NW, text="Witaj " + dbtest.imie_bd + "!", font=font3, tags=("delint"))
     w.create_text(426, 167, anchor=NW, text="Ostatni trening", font=font3, tags=("delint"))
     w.create_text(37, 390, anchor=NW, text="Porady", font=font3, tags=("delint"))
+
+    w.create_text(42, 441.45, anchor=NW, text=dbporady.porada1, font=font3, tags=("delint"))
 
     w.create_text(183.5, 229.45, anchor=NW, text="Cel: Popraw kondycję!", font=font3, tags=("delint")) #data - tekst dla karty Witaj
     w.create_text(219, 261.45, anchor=NW, text="25%", font=font4, tags=("delint"))
@@ -86,6 +91,10 @@ def interface1(root, w):
 
     #photo = PhotoImage(file="ikona2.gif")
     #w.create_image(40, 220, image=photo, anchor=NW, tags=("delint"))
+    wybrana_ikona = Tkinter.PhotoImage(file=r'ikona2.ppm')
+    root.wybrana_ikona = wybrana_ikona  #zapobiegam wrzuceniu obrazka do smieci
+    w.create_image((40,220), image=wybrana_ikona, anchor='nw', tags=("delint"))
+
 
 def interface2(root, w):
 
@@ -148,13 +157,7 @@ def interface4(root, w):
     #w.create_text(71, 29, anchor=NW, text="Imie Nazwisko", font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
     w.create_text(37, 167, anchor=NW, text="Moje dane", font=font3, tags=("delint"))
 
-    w.create_text(42, 221.45, anchor=NW, text="Imie:", font=font3, tags=("delint")) #data - tekst dla karty Moje dane
-    w.create_text(42, 261.45, anchor=NW, text="Nazwisko:", font=font3, tags=("delint"))
-    w.create_text(42, 301.45, anchor=NW, text="Wiek:", font=font3, tags=("delint"))
-    w.create_text(42, 341.45, anchor=NW, text="Plec:", font=font3, tags=("delint"))
-    w.create_text(42, 381.45, anchor=NW, text="Wzrost:", font=font3, tags=("delint"))
-    w.create_text(42, 421.45, anchor=NW, text="Waga:", font=font3, tags=("delint"))
-    w.create_text(42, 462.45, anchor=NW, text="Wyzeruj program", font=font3, activefill="#636363", tags=("delint"))
+    zmiendane = w.create_text(145, 354, anchor=NW, text="Zmien dane", activefill="#D8D8D8", font=font2, tags=("delint")) #data - tekst dla karty Moje dane
 
     w.create_text(517.5, 460, anchor=NW, text="Dziennik rowerzysty", font=font3, tags=("delint")) #data - tekst dla karty Dane programu
     w.create_text(532, 489, anchor=NW, text="Tobiasz Dobrowolski", font=font5, tags=("delint"))
@@ -163,3 +166,8 @@ def interface4(root, w):
 
     w.create_line(608, 128.5, 756, 128.5, fill="#ffffff", tags=("delint")) #linia menu
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint")) #linie do box'ow
+
+    def clickZmienDane(event):
+        popupdane.popup1(root) #testowe okienko
+
+    w.tag_bind(zmiendane, "<ButtonPress-1>", clickZmienDane) #wezel laczacy klikniecie z funkcja
