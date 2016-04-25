@@ -9,7 +9,7 @@ import sys
 
 root = Tk() #otwarcie okna
 root.resizable(0,0) #zablokowanie rozmiaru okna
-root.title('Projekt z Pythona') #tytul okna
+root.title('Aero - Dziennik rowerowy') #tytul okna
 root.geometry('800x600+200+200') #rozmiar okna
 
 #canvas UI
@@ -20,7 +20,7 @@ def intro():
     intro = Tkinter.PhotoImage(file=r'intro.ppm')
     root.intro = intro  #zapobiegam wrzuceniu obrazka do smieci
     w.create_image((0,0), image=intro, anchor='nw', tags=("intro"))
-    w.after(2000, w.delete, "intro") #usun intro po 3 sekundach
+    w.after(2000, w.delete, "intro") #usun intro po 2 sekundach
 
 def clickAktualnosci(event):
     interface.interface1(root, w)
