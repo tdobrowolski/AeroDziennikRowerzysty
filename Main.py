@@ -45,7 +45,7 @@ def menuUp(w):
     w.tag_raise(menu4)
 
 interface.interface1(root, w) #zaladowanie karty Aktualnosci
-intro() #zaladowanie 3 sekundowego intro
+#intro() #zaladowanie 3 sekundowego intro
 
 menu3 = w.create_text(450, 92, anchor=NW, text="Moje dane", font=font2, activefill="#D8D8D8", fill="#ffffff")
 

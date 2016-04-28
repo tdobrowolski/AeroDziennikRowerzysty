@@ -1,10 +1,13 @@
 #-*- coding: utf-8 -*-
+from __future__ import division
 import Tkinter
 from Tkinter import *
 import tkFont
 import dbtest
 import dbporady
 import popupdane
+import dbodane
+
 
 
 def interface3(root, w):
@@ -29,12 +32,12 @@ def interface3(root, w):
     w.create_text(42, 381.45, anchor=NW, text="Wzrost:" + " " + str(dbtest.wzrost_bd) + " cm", font=font3, tags=("delint"))
     w.create_text(42, 421.45, anchor=NW, text="Waga:" + " " + str(dbtest.waga_bd) + " kg", font=font3, tags=("delint"))
 
-    w.create_text(431, 221.45, anchor=NW, text="Wartosc BMI: 20,53", font=font3, tags=("delint")) #data - tekst dla karty Obliczone dane
-    w.create_text(431, 261.45, anchor=NW, text="Przejechane kilometry: 24 km", font=font3, tags=("delint"))
-    w.create_text(431, 301.45, anchor=NW, text="Spalone kalorie: 1200 kcal", font=font3, tags=("delint"))
+    w.create_text(431, 221.45, anchor=NW, text="Wartosc BMI: " + str(dbtest.waga_bd//((dbtest.wzrost_bd/100) * (dbtest.wzrost_bd/100))), font=font3, tags=("delint")) #data - tekst dla karty Obliczone dane
+    w.create_text(431, 261.45, anchor=NW, text="Przejechane kilometry: " + str(dbodane.kilometryTotal_bd) + " km", font=font3, tags=("delint"))
+    w.create_text(431, 301.45, anchor=NW, text="Spalone kalorie: " + str(dbodane.kalorieTotal_bd) + " kcal", font=font3, tags=("delint"))
     w.create_text(431, 341.45, anchor=NW, text="Calkowity czas: 1g 23m 17s", font=font3, tags=("delint"))
-    w.create_text(431, 381.45, anchor=NW, text="Wykonane treningi: 3", font=font3, tags=("delint"))
-    w.create_text(431, 421.45, anchor=NW, text="Zdobyte cele: 0", font=font3, tags=("delint"))
+    w.create_text(431, 381.45, anchor=NW, text="Wykonane treningi: " + str(dbodane.treningiTotal_bd), font=font3, tags=("delint"))
+    w.create_text(431, 421.45, anchor=NW, text="Zdobyte cele: " + str(dbodane.celeTotal_bd), font=font3, tags=("delint"))
 
     w.create_line(426, 128.5, 574, 128.5, fill="#ffffff", tags=("delint"))#linia menu
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint"))#linie do box'ow
@@ -162,7 +165,7 @@ def interface4(root, w):
     w.create_text(517.5, 460, anchor=NW, text="Dziennik rowerzysty", font=font3, tags=("delint")) #data - tekst dla karty Dane programu
     w.create_text(532, 489, anchor=NW, text="Tobiasz Dobrowolski", font=font5, tags=("delint"))
     w.create_text(580, 514, anchor=NW, text="2016", font=font5, tags=("delint"))
-    w.create_text(562, 537, anchor=NW, text="Wersja 0.1", font=font5, tags=("delint"))
+    w.create_text(562, 537, anchor=NW, text="Wersja 0.5", font=font5, tags=("delint"))
 
     w.create_line(608, 128.5, 756, 128.5, fill="#ffffff", tags=("delint")) #linia menu
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint")) #linie do box'ow
