@@ -9,7 +9,7 @@ con = lite.connect('baza.db')
 with con:
 
     cur = con.cursor()
-    cur.execute("SELECT * FROM PodaneDane")
+    cur.execute("SELECT * FROM CelDane")
 
     while True:
 
@@ -18,10 +18,7 @@ with con:
         if row == None:
             break
 
-        imie_bd = row[0]
-        nazwisko_bd = row[1]
-        wiek_bd = row[2]
-        plec_bd = row[3]
-        wzrost_bd = row[4]
-        waga_bd = row[5]
-        cel_bd = row[6]
+        kilometryCel_bd = row[0]
+        kalorieCel_bd = row[1]
+        treningiCel_bd = row[2]
+        postepCel_bd = row[3]

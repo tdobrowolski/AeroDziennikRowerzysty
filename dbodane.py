@@ -20,6 +20,10 @@ with con:
 
         kilometryTotal_bd = row[0]
         kalorieTotal_bd = row[1]
-        czasTotal_bd = row[2]
+        #czasTotal_bd = row[2]
         treningiTotal_bd = row[3]
         celeTotal_bd = row[4]
+
+        #zamiana calkowitego czasu na h:m:s
+        minutyCalkowite_bd, sekundyCalkowite_bd = divmod(row[2], 60)
+        godzinyCalkowite_bd, minutyCalkowite_bd = divmod(minutyCalkowite_bd, 60)

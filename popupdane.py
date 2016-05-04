@@ -48,7 +48,7 @@ def popup1(root):
     var_1 = StringVar(top)
     var_1.set("Cel") #tytul menu
 
-    lista_cel = OptionMenu(top, var_1, "Popraw samopoczucie (Latwe)", "Popraw kondycje (Srednie)", "Popraw sylwetke (Trudne)")
+    lista_cel = OptionMenu(top, var_1, "Popraw nastroj!", "Popraw kondycje!", "Popraw sylwetke!")
     lista_cel.pack()
     lista_cel.config(width=20)
 
