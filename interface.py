@@ -9,21 +9,17 @@ import popupdane
 import dbodane
 import dbcel
 import dbceldeadline
-
+import popupdodajtrening
+import dbtreninglast
 
 
 def interface3(root, w):
 
     w.delete("delint")
 
-    #w.create_rectangle(0, 0, 800, 600, fill="#EEEEEF", width=0) #gorne tlo
-    #w.create_rectangle(0, 0, 800, 130, fill="#039CE8", width=0) #gorne tlo
     w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #wpisane box
     w.create_rectangle(412, 154, 412+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #obliczone box
 
-    #w.create_oval(24, 24, 59, 59, fill = "#ffffff", width=0) #avatar
-
-    #w.create_text(71, 29, anchor=NW, text="Imie Nazwisko", font=font1, fill="#ffffff") #imie i nazwisko
     w.create_text(37, 167, anchor=NW, text="Wpisane dane", font=font3, tags=("delint"))
     w.create_text(426, 167, anchor=NW, text="Obliczone dane", font=font3, tags=("delint"))
 
@@ -79,23 +75,21 @@ def interface1(root, w):
     w.create_text(183.5, 229.45, anchor=NW, text="Cel: " + dbtest.cel_bd, font=font3, tags=("delint")) #data - tekst dla karty Witaj
     w.create_text(219, 261.45, anchor=NW, text=str(dbcel.postepCel_bd) + "%", font=font4, tags=("delint"))
 
-    w.create_text(431, 221.45, anchor=NW, text="22.02.2016", font=font3, tags=("delint")) #data - tekst dla karty Ostatni trening
-    w.create_text(707, 221.45, anchor=NW, text="17:00", font=font3, tags=("delint"))
-    w.create_text(431, 261.45, anchor=NW, text="Dystans: 7,45 km", font=font3, tags=("delint"))
-    w.create_text(431, 301.45, anchor=NW, text="Czas: 0g 24m 26s", font=font3, tags=("delint"))
-    w.create_text(431, 341.45, anchor=NW, text="Kalorie: 241 kcal", font=font3, tags=("delint"))
-    w.create_text(431, 381.45, anchor=NW, text="Srednia predkosc: 18,24 km/s", font=font3, tags=("delint"))
-    w.create_text(431, 421.45, anchor=NW, text="Samopoczucie: Bardzo dobre", font=font3, tags=("delint"))
-    w.create_text(431, 461.45, anchor=NW, text="Warunki atmosferyczne: Pogodnie", font=font3, tags=("delint"))
-    w.create_text(431, 501.45, anchor=NW, text="Notatki: Brak", font=font3, tags=("delint"))
+    w.create_text(431, 221.45, anchor=NW, text=dbtreninglast.dataLast_bd, font=font3, tags=("delint")) #data - tekst dla karty Ostatni trening
+    w.create_text(707, 221.45, anchor=NW, text=dbtreninglast.godzinaLast_bd, font=font3, tags=("delint"))
+    w.create_text(431, 261.45, anchor=NW, text="Dystans: " + str(dbtreninglast.dystansLast_bd) + " km", font=font3, tags=("delint"))
+    w.create_text(431, 301.45, anchor=NW, text="Czas: " + str(dbtreninglast.godzinyLast_bd) + "g " + str(dbtreninglast.minutyLast_bd) + "m " + str(dbtreninglast.sekundyLast_bd) + "s ", font=font3, tags=("delint"))
+    w.create_text(431, 341.45, anchor=NW, text="Kalorie: " + str(dbtreninglast.kalorieLast_bd) + " kcal", font=font3, tags=("delint"))
+    w.create_text(431, 381.45, anchor=NW, text="Srednia predkosc: " + str(dbtreninglast.srPredkoscLast_bd) + " km/h", font=font3, tags=("delint"))
+    w.create_text(431, 421.45, anchor=NW, text="Samopoczucie: " + dbtreninglast.samopoczucieLast_bd, font=font3, tags=("delint"))
+    w.create_text(431, 461.45, anchor=NW, text="Warunki atmosferyczne: " + dbtreninglast.pogodaLast_bd, font=font3, tags=("delint"))
+    w.create_text(431, 501.45, anchor=NW, text="Notatki: " + dbtreninglast.notatkiLast_bd, font=font3, tags=("delint"))
 
     w.create_line(46, 128.5, 194, 128.5, fill="#ffffff", tags=("delint"))#linia menu
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint"))#linie do box'ow
     w.create_line(23, 423, 388, 423, fill="#0175AE", tags=("delint"))
     w.create_line(412, 203, 777, 203, fill="#0175AE", tags=("delint"))
 
-    #photo = PhotoImage(file="ikona2.gif")
-    #w.create_image(40, 220, image=photo, anchor=NW, tags=("delint"))
     wybrana_ikona = Tkinter.PhotoImage(file=r'ikona'+str(dbceldeadline.uId)+'.ppm')
     root.wybrana_ikona = wybrana_ikona  #zapobiegam wrzuceniu obrazka do smieci
     w.create_image((40,220), image=wybrana_ikona, anchor='nw', tags=("delint"))
@@ -105,16 +99,11 @@ def interface2(root, w):
 
     w.delete("delint")
 
-    #w.create_rectangle(0, 0, 800, 600, fill="#EEEEEF", width=0) #gorne tlo
-    #w.create_rectangle(0, 0, 800, 130, fill="#039CE8", width=0) #gorne tlo
     w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #moje treningi box
     w.create_rectangle(412, 486, 412+366, 486+90, fill="#ffffff", width=0, tags=("delint")) #pasek box
     w.create_rectangle(412, 154, 412+366, 154+308, fill="#ffffff", width=0, tags=("delint")) #postep box
     w.create_rectangle(412, 486, 412+(366 * (dbcel.postepCel_bd/100)), 486+90, fill="#039CE8", width=0, tags=("delint")) #pasek postepu box
 
-    #w.create_oval(24, 24, 59, 59, fill = "#ffffff", width=0) #avatar
-
-    #w.create_text(71, 29, anchor=NW, text="Imie Nazwisko", font=font1, fill="#ffffff") #imie i nazwisko
     w.create_text(37, 167, anchor=NW, text="Moje treningi", font=font3, tags=("delint"))
     w.create_text(426, 167, anchor=NW, text="Postep", font=font3, tags=("delint"))
 
@@ -133,12 +122,12 @@ def interface2(root, w):
     w.create_text(42, 347.38, anchor=NW, text="Trening 3", font=font3, tags=("delint"))
     w.create_text(272, 347.38, anchor=NW, text="22.02.2016", font=font3, tags=("delint"))
 
-    w.create_oval(320, 506, 320+48, 506+48, fill = "#039CE8", activefill="#27ADF0", width=0, tags=("delint")) #FAB button
+    dodajtrening = w.create_oval(320, 506, 320+48, 506+48, fill = "#039CE8", activefill="#27ADF0", width=0, tags=("delint")) #FAB button
     w.create_text(337, 513, anchor=NW, text="+", font=font2, fill="#ffffff", tags=("delint")) #plus do FAB
 
     w.create_text(431, 221.45, anchor=NW, text="Wybrany cel: " + dbtest.cel_bd, font=font3, tags=("delint")) #data - tekst dla karty Postęp + Pasek postepu
-    w.create_text(431, 261.45, anchor=NW, text="Przejechane kilometry: " + str(dbcel.kilometryCel_bd) + " / " +  str(dbceldeadline.kilometryCelEnd_bd) + "km", font=font3, tags=("delint"))
-    w.create_text(431, 301.45, anchor=NW, text="Spalone kalorie: " + str(dbcel.kalorieCel_bd) + " / " + str(dbceldeadline.kalorieCelEnd_bd) + "kcal", font=font3, tags=("delint"))
+    w.create_text(431, 261.45, anchor=NW, text="Przejechane kilometry: " + str(dbcel.kilometryCel_bd) + " / " +  str(dbceldeadline.kilometryCelEnd_bd) + " km", font=font3, tags=("delint"))
+    w.create_text(431, 301.45, anchor=NW, text="Spalone kalorie: " + str(dbcel.kalorieCel_bd) + " / " + str(dbceldeadline.kalorieCelEnd_bd) + " kcal", font=font3, tags=("delint"))
     w.create_text(431, 341.45, anchor=NW, text="Wykonane treningi: " + str(dbcel.treningiCel_bd) + " / " + str(dbceldeadline.treningiCelEnd_bd), font=font3, tags=("delint"))
     w.create_text(431, 381.45, anchor=NW, text="Postep w procentach: " + str(dbcel.postepCel_bd) + "%", font=font3, tags=("delint"))
     w.create_text(431, 421.45, anchor=NW, text="Oby tak dalej!", font=font3, tags=("delint"))
@@ -148,18 +137,18 @@ def interface2(root, w):
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint"))#linie do box'ow
     w.create_line(412, 203, 777, 203, fill="#0175AE", tags=("delint"))
 
+    def clickDodajTrening(event):
+        popupdodajtrening.popup2(root) #testowe okienko
+
+    w.tag_bind(dodajtrening, "<ButtonPress-1>", clickDodajTrening) #wezel laczacy klikniecie z funkcja
+
 def interface4(root, w):
 
     w.delete("delint")
 
-    #w.create_rectangle(0, 0, 800, 600, fill="#EEEEEF", width=0) #gorne tlo
-    #w.create_rectangle(0, 0, 800, 130, fill="#039CE8", width=0) #gorne tlo
     w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #wpisane box
     w.create_rectangle(412, 154, 412+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #obliczone box
 
-    #w.create_oval(24, 24, 59, 59, fill = "#ffffff", width=0) #avatar
-
-    #w.create_text(71, 29, anchor=NW, text="Imie Nazwisko", font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
     w.create_text(37, 167, anchor=NW, text="Moje dane", font=font3, tags=("delint"))
 
     zmiendane = w.create_text(145, 354, anchor=NW, text="Zmien dane", activefill="#D8D8D8", font=font2, tags=("delint")) #data - tekst dla karty Moje dane
