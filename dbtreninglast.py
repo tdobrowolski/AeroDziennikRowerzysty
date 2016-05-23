@@ -26,6 +26,7 @@ with con:
         samopoczucieLast_bd = row[4]
         pogodaLast_bd = row[5]
         notatkiLast_bd = row[6]
+        idLast_bd = row[7]
 
         #zamiana calkowitego czasu na h:m:s
         minutyLast_bd, sekundyLast_bd = divmod(czasLast_bd, 60)

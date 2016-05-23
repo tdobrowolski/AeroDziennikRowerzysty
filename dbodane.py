@@ -3,27 +3,58 @@
 
 import sqlite3 as lite
 import sys
+import dbtest
+import dbtreninglast
+
 
 con = lite.connect('baza.db')
 
-with con:
+i = 1
+kilometryTotal_bd = 0
+kalorieTotal_bd = 0
+treningiTotal_bd = dbtreninglast.idLast_bd
+czasTotal_bd = 0
 
-    cur = con.cursor()
-    cur.execute("SELECT * FROM ObliczoneDane")
 
-    while True:
 
-        row = cur.fetchone()
+while i <= dbtreninglast.idLast_bd:
 
-        if row == None:
-            break
+    with con:
 
-        kilometryTotal_bd = row[0]
-        kalorieTotal_bd = row[1]
-        #czasTotal_bd = row[2]
-        treningiTotal_bd = row[3]
-        celeTotal_bd = row[4]
+        cur = con.cursor()
+        cur.execute("SELECT * FROM Treningi WHERE Id = ?", (i,))
 
-        #zamiana calkowitego czasu na h:m:s
-        minutyCalkowite_bd, sekundyCalkowite_bd = divmod(row[2], 60)
-        godzinyCalkowite_bd, minutyCalkowite_bd = divmod(minutyCalkowite_bd, 60)
+        while True:
+
+            row = cur.fetchone()
+
+            if row == None:
+                break
+
+            kilometryTotal_bd += row[2]
+
+            srPredkoscLastek_bd = int(row[2])*3600/int(row[3])
+
+            kalorieTotal_bd += int(dbtest.waga_bd*(row[3]/60)*(0.6345*srPredkoscLastek_bd*srPredkoscLastek_bd+0.7563*srPredkoscLastek_bd+36.725)/(3600))
+
+            czasTotal_bd += row[3]
+
+        cur.execute("SELECT * FROM ObliczoneDane")
+
+        while True:
+
+            row = cur.fetchone()
+
+            if row == None:
+                break
+
+            celeTotal_bd =  row[4]
+
+            #exit()
+
+    i = i + 1
+
+
+
+minutyCalkowite_bd, sekundyCalkowite_bd = divmod(czasTotal_bd, 60)
+godzinyCalkowite_bd, minutyCalkowite_bd = divmod(minutyCalkowite_bd, 60)

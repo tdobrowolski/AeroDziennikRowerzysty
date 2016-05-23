@@ -1,11 +1,13 @@
 #!/bin/env python -u
 #-*- coding: utf-8 -*-
+
 import Tkinter
 from Tkinter import *
 import tkFont
 import interface
 import time
 import sys
+import sprawdzaniecelu
 
 root = Tk() #otwarcie okna
 root.resizable(0,0) #zablokowanie rozmiaru okna
@@ -44,8 +46,10 @@ def menuUp(w):
     w.tag_raise(menu3)
     w.tag_raise(menu4)
 
+sprawdzaniecelu.sprawdzanieCelu(root)
+
 interface.interface1(root, w) #zaladowanie karty Aktualnosci
-#intro() #zaladowanie 3 sekundowego intro
+intro() #zaladowanie 3 sekundowego intro
 
 menu3 = w.create_text(450, 92, anchor=NW, text="Moje dane", font=font2, activefill="#D8D8D8", fill="#ffffff")
 

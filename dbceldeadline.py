@@ -29,6 +29,7 @@ with con:
         kilometryCelEnd_bd = row[0]
         kalorieCelEnd_bd = row[1]
         treningiCelEnd_bd = row[2]
+        postepCelEnd_bd = kilometryCelEnd_bd + kalorieCelEnd_bd + treningiCelEnd_bd
 
         #Id 1 - Popraw nastroj (easy)
         #Id 2 - Popraw kondycje (medium)
