@@ -5,55 +5,60 @@ from Tkinter import *
 
 def popup1(root):
     global top
-    top = Toplevel() #otwarcie okienka popup
+    top = Toplevel(padx=10, pady=10) #otwarcie okienka popup
     top.title("Moje dane") #tytul okienka popup
 
-    domyslne1 = StringVar() #przypisanie wartosci domyslnej
-    insert1 = Entry(top, textvariable=domyslne1, relief=FLAT) #pole insert nr1
-    insert1.pack()
+    #domyslne1 = StringVar() #przypisanie wartosci domyslnej
+    Label(top, text="Imie:").grid(row=0, sticky=W)
+    insert1 = Entry(top) #pole insert nr1
+    insert1.grid(row=0, column=1)
 
-    domyslne2 = StringVar()
-    insert2 = Entry(top, textvariable=domyslne2, relief=FLAT)
-    insert2.pack()
+    #domyslne2 = StringVar()
+    Label(top, text="Nazwisko:").grid(row=1, sticky=W)
+    insert2 = Entry(top)
+    insert2.grid(row=1, column=1)
 
-    domyslne3 = StringVar()
-    insert3 = Entry(top, textvariable=domyslne3, relief=FLAT)
-    insert3.pack()
+    #domyslne3 = StringVar()
+    Label(top, text="Wiek:").grid(row=2, sticky=W)
+    insert3 = Entry(top)
+    insert3.grid(row=2, column=1)
 
     var_0 = StringVar(top)
-    var_0.set("Plec") #tytul menu
+    var_0.set("Kobieta") #tytul menu
 
+    Label(top, text="Plec:").grid(row=3, sticky=W)
     lista_plec = OptionMenu(top, var_0, "Kobieta", "Mezczyzna")
-    lista_plec.pack()
+    lista_plec.grid(row=3, column=1)
     lista_plec.config(width=20)
 
-    domyslne4 = StringVar()
-    insert4 = Entry(top, textvariable=domyslne4, relief=FLAT)
-    insert4.pack()
+    #domyslne4 = StringVar()
+    Label(top, text="Wzrost (cm):").grid(row=4, sticky=W)
+    insert4 = Entry(top)
+    insert4.grid(row=4, column=1)
 
-    domyslne5 = StringVar()
-    insert5 = Entry(top, textvariable=domyslne5, relief=FLAT)
-    insert5.pack()
+    Label(top, text="Waga (kg):").grid(row=5, sticky=W)
+    insert5 = Entry(top)
+    insert5.grid(row=5, column=1)
 
-    domyslne1.set("Imie") #domyslny tekst w polu insert nr1
+    #domyslne1.set("Imie") #domyslny tekst w polu insert nr1
 
-    domyslne2.set("Nazwisko")
+    #domyslne2.set("Nazwisko")
 
-    domyslne3.set("Wiek")
+    #domyslne3.set("Wiek")
 
-    domyslne4.set("Wzrost (cm)")
+    #domyslne4.set("Wzrost (cm)")
 
-    domyslne5.set("Waga")
+    #domyslne5.set("Waga")
 
     var_1 = StringVar(top)
-    var_1.set("Cel") #tytul menu
+    var_1.set("Popraw nastroj!") #tytul menu
 
+    Label(top, text="Cel:").grid(row=6, sticky=W)
     lista_cel = OptionMenu(top, var_1, "Popraw nastroj!", "Popraw kondycje!", "Popraw sylwetke!")
-    lista_cel.pack()
+    lista_cel.grid(row=6, column=1)
     lista_cel.config(width=20)
 
     def exit():
-        global top
         top.destroy()
 
     def callback():
@@ -66,14 +71,17 @@ def popup1(root):
             cur_ppd = con_ppd.cursor()
             cur_ppd.execute("DELETE FROM PodaneDane WHERE Id = 1")
             cur_ppd.execute("INSERT INTO PodaneDane VALUES(?,?,?,?,?,?,?,?)", insert11)
-        exit()
 
-    mssg1 = StringVar()
-    msssg1_l = Message(top, text="Po zmianie danych potrzebny jest reset programu.", relief=FLAT, width=180)
-    msssg1_l.pack()
+        con_ppd.close()
+        top.destroy()
+
+
+    #mssg1 = StringVar()
+    #msssg1_l = Message(top, text="Po zmianie danych potrzebny jest reset programu.", relief=FLAT, width=180)
+    #msssg1_l.pack()
 
     b = Button(top, text="Zapisz", command=callback) #przycisk zapisz
-    b.pack(in_=top, side=LEFT)
+    b.grid(row=7, column=1, pady=2)
 
     c = Button(top, text="Anuluj", command=exit) #przycisk wyjdz
-    c.pack(in_=top, side=RIGHT)
+    c.grid(row=7, column=0, pady=2)

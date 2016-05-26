@@ -11,6 +11,11 @@ from Tkinter import *
 import tkMessageBox
 
 def sprawdzanieCelu(root):
+
+    dbcel.dbcel()
+    dbceldeadline.dbceldeadline()
+    dbtest.dbtest()
+
     if dbcel.postepCel_bd >= dbceldeadline.postepCelEnd_bd:
 
         con_sc = lite.connect('baza.db')
@@ -36,8 +41,7 @@ def sprawdzanieCelu(root):
                 cur_sc.execute("DELETE FROM ObliczoneDane")
                 cur_sc.execute("INSERT INTO ObliczoneDane VALUES(?,?,?,?,?)", insert01)
 
+        con_sc.commit()
+        con_sc.close()
 
-
-        #exit()
-        root.update()
         tkMessageBox.showinfo("Uzyskales cel", "Brawo, zaliczyles swoj cel. Wybierz nowy lub sprobuj osiagnac go jeszcze raz. Zresetuj program aby zaktualizowac dane.")

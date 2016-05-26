@@ -4,21 +4,28 @@
 import sqlite3 as lite
 import sys
 
-con = lite.connect('baza.db')
+def dbcel():
+    con_cel = lite.connect('baza.db')
 
-with con:
+    with con_cel:
 
-    cur = con.cursor()
-    cur.execute("SELECT * FROM CelDane")
+        cur_cel = con_cel.cursor()
+        cur_cel.execute("SELECT * FROM CelDane")
 
-    while True:
+        while True:
 
-        row = cur.fetchone()
+            row = cur_cel.fetchone()
 
-        if row == None:
-            break
+            if row == None:
+                break
 
-        kilometryCel_bd = row[0]
-        kalorieCel_bd = row[1]
-        treningiCel_bd = row[2]
-        postepCel_bd = row[3]
+            global kilometryCel_bd
+            kilometryCel_bd = row[0]
+            global kalorieCel_bd
+            kalorieCel_bd = row[1]
+            global treningiCel_bd
+            treningiCel_bd = row[2]
+            global postepCel_bd
+            postepCel_bd = row[3]
+
+    con_cel.close()

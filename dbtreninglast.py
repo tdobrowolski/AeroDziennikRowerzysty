@@ -5,35 +5,53 @@ import sqlite3 as lite
 import sys
 import dbtest
 
-con = lite.connect('baza.db')
+def dbtreninglast():
+    dbtest.dbtest()
 
-with con:
+    con_tl = lite.connect('baza.db')
 
-    cur = con.cursor()
-    cur.execute("SELECT * FROM Treningi WHERE Id = (select max(Id) from Treningi)")
+    with con_tl:
 
-    while True:
+        cur_tl = con_tl.cursor()
+        cur_tl.execute("SELECT * FROM Treningi WHERE Id = (select max(Id) from Treningi)")
 
-        row = cur.fetchone()
+        while True:
 
-        if row == None:
-            break
+            row_tl = cur_tl.fetchone()
 
-        dataLast_bd = row[0]
-        godzinaLast_bd = row[1]
-        dystansLast_bd = row[2]
-        czasLast_bd = row[3]
-        samopoczucieLast_bd = row[4]
-        pogodaLast_bd = row[5]
-        notatkiLast_bd = row[6]
-        idLast_bd = row[7]
+            if row_tl == None:
+                break
 
-        #zamiana calkowitego czasu na h:m:s
-        minutyLast_bd, sekundyLast_bd = divmod(czasLast_bd, 60)
-        godzinyLast_bd, minutyLast_bd = divmod(minutyLast_bd, 60)
+            global dataLast_bd
+            dataLast_bd = row_tl[0]
+            global godzinaLast_bd
+            godzinaLast_bd = row_tl[1]
+            global dystansLast_bd
+            dystansLast_bd = row_tl[2]
+            global czasLast_bd
+            czasLast_bd = row_tl[3]
+            global samopoczucieLast_bd
+            samopoczucieLast_bd = row_tl[4]
+            global pogodaLast_bd
+            pogodaLast_bd = row_tl[5]
+            global notatkiLast_bd
+            notatkiLast_bd = row_tl[6]
+            global idLast_bd
+            idLast_bd = row_tl[7]
 
-        #obliczanie km/h
-        srPredkoscLast_bd = dystansLast_bd*3600/czasLast_bd
+            #zamiana calkowitego czasu na h:m:s
+            global sekundyLast_bd
+            global minutyLast_bd
+            global godzinyLast_bd
+            minutyLast_bd, sekundyLast_bd = divmod(czasLast_bd, 60)
+            godzinyLast_bd, minutyLast_bd = divmod(minutyLast_bd, 60)
 
-        #obliczanie kalorii
-        kalorieLast_bd = int(dbtest.waga_bd*(czasLast_bd/60)*(0.6345*srPredkoscLast_bd*srPredkoscLast_bd+0.7563*srPredkoscLast_bd+36.725)/(3600))
+            #obliczanie km/h
+            global srPredkoscLast_bd
+            srPredkoscLast_bd = dystansLast_bd*3600/czasLast_bd
+
+            #obliczanie kalorii
+            global kalorieLast_bd
+            kalorieLast_bd = int(dbtest.waga_bd*(czasLast_bd/60)*(0.6345*srPredkoscLast_bd*srPredkoscLast_bd+0.7563*srPredkoscLast_bd+36.725)/(3600))
+
+    con_tl.close()

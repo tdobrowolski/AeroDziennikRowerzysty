@@ -15,6 +15,9 @@ import popuptrening
 
 def interface3(root, w):
 
+    dbodane.dbodane()
+    dbtest.dbtest()
+
     if 'frame' in globals():
         frame.pack_forget()
         frame.destroy()
@@ -46,6 +49,11 @@ def interface3(root, w):
     w.create_line(412, 203, 777, 203, fill="#0175AE", tags=("delint"))
 
 def interface1(root, w):
+
+    dbceldeadline.dbceldeadline()
+    dbporady.dbporady()
+    dbtest.dbtest()
+    dbtreninglast.dbtreninglast()
 
     if 'frame' in globals():
         frame.pack_forget()
@@ -105,11 +113,17 @@ def interface1(root, w):
 
 def interface2(root, w):
 
+    dbceldeadline.dbceldeadline()
+    dbtest.dbtest()
+    dbtreninglast.dbtreninglast()
+
     if 'frame' in globals():
         frame.pack_forget()
         frame.destroy()
 
     w.delete("delint")
+
+    dbcel.dbcel()
 
     w.create_rectangle(23, 154, 23+366, 154+250, fill="#ffffff", width=0, tags=("delint")) #moje treningi box
     w.create_rectangle(412, 486, 412+366, 486+90, fill="#ffffff", width=0, tags=("delint")) #pasek box
@@ -187,7 +201,7 @@ def interface4(root, w):
 
     zmiendane = w.create_text(145, 354, anchor=NW, text="Zmien dane", activefill="#D8D8D8", font=font2, tags=("delint")) #data - tekst dla karty Moje dane
 
-    w.create_text(517.5, 460, anchor=NW, text="Dziennik rowerzysty", font=font3, tags=("delint")) #data - tekst dla karty Dane programu
+    w.create_text(490, 460, anchor=NW, text="Aero - Dziennik rowerzysty", font=font3, tags=("delint")) #data - tekst dla karty Dane programu
     w.create_text(532, 489, anchor=NW, text="Tobiasz Dobrowolski", font=font5, tags=("delint"))
     w.create_text(580, 514, anchor=NW, text="2016", font=font5, tags=("delint"))
     w.create_text(562, 537, anchor=NW, text="Wersja 0.9", font=font5, tags=("delint"))

@@ -18,6 +18,8 @@ root.geometry('800x600+200+200') #rozmiar okna
 w = Tkinter.Canvas(root, bd=0, height=600, width=800) #grafiki
 font2 = tkFont.Font(family='Helvetica Neue Thin', size=23, ) #czcionka HN T 23
 
+sprawdzaniecelu.sprawdzanieCelu(root)
+
 def intro():
     intro = Tkinter.PhotoImage(file=r'intro.ppm')
     root.intro = intro  #zapobiegam wrzuceniu obrazka do smieci
@@ -46,8 +48,6 @@ def menuUp(w):
     w.tag_raise(menu3)
     w.tag_raise(menu4)
 
-sprawdzaniecelu.sprawdzanieCelu(root)
-
 interface.interface1(root, w) #zaladowanie karty Aktualnosci
 intro() #zaladowanie 3 sekundowego intro
 
@@ -66,4 +66,4 @@ w.tag_bind(menu4, "<ButtonPress-1>", clickUstawienia) #wezel laczacy klikniecie 
 
 w.pack()
 
-root.mainloop () #petla zdarzen
+root.mainloop() #petla zdarzen

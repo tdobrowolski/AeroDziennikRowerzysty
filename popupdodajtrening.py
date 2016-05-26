@@ -56,7 +56,6 @@ def popup2(root):
     godzina = str(now.hour) + ":" + str(now.minute)
 
     def exit():
-        global top
         top.destroy()
 
     def callback():
@@ -87,7 +86,8 @@ def popup2(root):
             #cur_ppdt = con_ppdt.cursor()
             cur_ppdt.execute("INSERT INTO Treningi VALUES(?,?,?,?,?,?,?,?)", insert21)
 
-        exit()
+        con_ppdt.commit()
+        con_ppdt.close()
 
         con_ppdt2 = lite.connect('baza.db') #ppdt - popupdodajtrening (skrot od nazwy pliku)
 
@@ -106,7 +106,9 @@ def popup2(root):
             cur_ppdt2.execute("DELETE FROM CelDane")
             cur_ppdt2.execute("INSERT INTO CelDane VALUES(?,?,?,?)", insert22)
 
-        exit()
+        con_ppdt2.commit()
+        con_ppdt2.close()
+        top.destroy()
 
     b = Button(top, text="Zapisz", command=callback) #przycisk zapisz
     b.pack(in_=top, side=LEFT)

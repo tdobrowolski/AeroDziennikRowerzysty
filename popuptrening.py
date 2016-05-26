@@ -10,28 +10,30 @@ import dbtest
 
 def popup3(nr_treningu):
 
-    con = lite.connect('baza.db')
+    dbtest.dbtest()
 
-    with con:
+    con_pptre = lite.connect('baza.db')
 
-        cur = con.cursor()
-        cur.execute("SELECT * FROM Treningi WHERE Id = ?", (nr_treningu,))
+    with con_pptre:
+
+        cur_pptre = con_pptre.cursor()
+        cur_pptre.execute("SELECT * FROM Treningi WHERE Id = ?", (nr_treningu,))
 
         while True:
 
-            row = cur.fetchone()
+            row_pptre = cur_pptre.fetchone()
 
-            if row == None:
+            if row_pptre == None:
                 break
 
-            dataWybrana_bd = row[0]
-            godzinaWybrana_bd = row[1]
-            dystansWybrana_bd = row[2]
-            czasWybrana_bd = row[3]
-            samopoczucieWybrana_bd = row[4]
-            pogodaWybrana_bd = row[5]
-            notatkiWybrana_bd = row[6]
-            idWybrana_bd = row[7]
+            dataWybrana_bd = row_pptre[0]
+            godzinaWybrana_bd = row_pptre[1]
+            dystansWybrana_bd = row_pptre[2]
+            czasWybrana_bd = row_pptre[3]
+            samopoczucieWybrana_bd = row_pptre[4]
+            pogodaWybrana_bd = row_pptre[5]
+            notatkiWybrana_bd = row_pptre[6]
+            idWybrana_bd = row_pptre[7]
 
             #zamiana calkowitego czasu na h:m:s
             minutyWybrana_bd, sekundyWybrana_bd = divmod(czasWybrana_bd, 60)
@@ -43,13 +45,15 @@ def popup3(nr_treningu):
             #obliczanie kalorii
             kalorieWybrana_bd = int(dbtest.waga_bd*(czasWybrana_bd/60)*(0.6345*srPredkoscWybrana_bd*srPredkoscWybrana_bd+0.7563*srPredkoscWybrana_bd+36.725)/(3600))
 
-    global top
-    top = Toplevel() #otwarcie okienka popup
-    top.title("Wybrany trening") #tytul okienka popup
-    top.resizable(0,0) #zablokowanie rozmiaru okna
-    top.geometry('365x422+200+200') #rozmiar okna
+    con_pptre.close()
 
-    w2 = Tkinter.Canvas(top, bd=0, height=365, width=422) #grafiki
+    global top2
+    top2 = Toplevel() #otwarcie okienka popup
+    top2.title("Wybrany trening") #tytul okienka popup
+    top2.resizable(0,0) #zablokowanie rozmiaru okna
+    top2.geometry('365x422+200+200') #rozmiar okna
+
+    w2 = Tkinter.Canvas(top2, bd=0, height=365, width=422) #grafiki
 
     font3 = tkFont.Font(family='Helvetica Neue Thin', size=19) #czcionka HN T 19
 
@@ -69,4 +73,4 @@ def popup3(nr_treningu):
 
     w2.pack()
 
-    top.mainloop () #petla zdarzen
+    top2.mainloop () #petla zdarzen

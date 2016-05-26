@@ -5,18 +5,22 @@ import sqlite3 as lite
 import sys
 from random import randint
 
-con = lite.connect('baza.db')
+def dbporady():
+    con_por = lite.connect('baza.db')
 
-with con:
+    with con_por:
 
-    cur = con.cursor()
-    cur.execute("SELECT * FROM Porady")
+        cur_por = con_por.cursor()
+        cur_por.execute("SELECT * FROM Porady")
 
-    while True:
+        while True:
 
-        row = cur.fetchone()
+            row_por = cur_por.fetchone()
 
-        if row == None:
-            break
+            if row_por == None:
+                break
 
-        porada1 = row[randint(0,9)]
+            global porada1
+            porada1 = row_por[randint(0,9)]
+
+    con_por.close()

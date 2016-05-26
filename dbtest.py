@@ -4,24 +4,34 @@
 import sqlite3 as lite
 import sys
 
-con = lite.connect('baza.db')
+def dbtest():
+    con_test = lite.connect('baza.db')
 
-with con:
+    with con_test:
 
-    cur = con.cursor()
-    cur.execute("SELECT * FROM PodaneDane")
+        cur_test = con_test.cursor()
+        cur_test.execute("SELECT * FROM PodaneDane")
 
-    while True:
+        while True:
 
-        row = cur.fetchone()
+            row_test = cur_test.fetchone()
 
-        if row == None:
-            break
+            if row_test == None:
+                break
 
-        imie_bd = row[0]
-        nazwisko_bd = row[1]
-        wiek_bd = row[2]
-        plec_bd = row[3]
-        wzrost_bd = row[4]
-        waga_bd = row[5]
-        cel_bd = row[6]
+            global imie_bd
+            imie_bd = row_test[0]
+            global nazwisko_bd
+            nazwisko_bd = row_test[1]
+            global wiek_bd
+            wiek_bd = row_test[2]
+            global plec_bd
+            plec_bd = row_test[3]
+            global wzrost_bd
+            wzrost_bd = row_test[4]
+            global waga_bd
+            waga_bd = row_test[5]
+            global cel_bd
+            cel_bd = row_test[6]
+
+    con_test.close()
