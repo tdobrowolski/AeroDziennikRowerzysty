@@ -7,7 +7,8 @@ import tkFont
 import interface
 import time
 import sys
-import sprawdzaniecelu
+import tkMessageBox
+
 
 root = Tk() #otwarcie okna
 root.resizable(0,0) #zablokowanie rozmiaru okna
@@ -17,8 +18,6 @@ root.geometry('800x600+200+200') #rozmiar okna
 #canvas UI
 w = Tkinter.Canvas(root, bd=0, height=600, width=800) #grafiki
 font2 = tkFont.Font(family='Helvetica Neue Thin', size=23, ) #czcionka HN T 23
-
-sprawdzaniecelu.sprawdzanieCelu(root)
 
 def intro():
     intro = Tkinter.PhotoImage(file=r'intro.ppm')

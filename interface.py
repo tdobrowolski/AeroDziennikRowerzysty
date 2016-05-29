@@ -12,6 +12,8 @@ import dbceldeadline
 import popupdodajtrening
 import dbtreninglast
 import popuptrening
+import dbwyzerujprogram
+import sprawdzaniecelu
 
 def interface3(root, w):
 
@@ -54,12 +56,15 @@ def interface1(root, w):
     dbporady.dbporady()
     dbtest.dbtest()
     dbtreninglast.dbtreninglast()
+    dbcel.dbcel()
 
     if 'frame' in globals():
         frame.pack_forget()
         frame.destroy()
 
     w.delete("delint")
+
+    sprawdzaniecelu.sprawdzanieCelu()
 
     #czcionki
     global font1
@@ -79,9 +84,7 @@ def interface1(root, w):
     w.create_rectangle(23, 377, 23+366, 199+377, fill="#ffffff", width=0, tags=("delint")) #porady box
     w.create_rectangle(412, 154, 412+366, 422+154, fill="#ffffff", width=0, tags=("delint")) #ost trening box
 
-    w.create_oval(24, 24, 59, 59, fill="#ffffff", width=0) #avatar
-
-    w.create_text(71, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff") #imie i nazwisko
+    w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff") #imie i nazwisko
     w.create_text(37, 167, anchor=NW, text="Witaj " + dbtest.imie_bd + "!", font=font3, tags=("delint"))
     w.create_text(426, 167, anchor=NW, text="Ostatni trening", font=font3, tags=("delint"))
     w.create_text(37, 390, anchor=NW, text="Porady", font=font3, tags=("delint"))
@@ -113,6 +116,7 @@ def interface1(root, w):
 
 def interface2(root, w):
 
+    dbcel.dbcel()
     dbceldeadline.dbceldeadline()
     dbtest.dbtest()
     dbtreninglast.dbtreninglast()
@@ -123,12 +127,18 @@ def interface2(root, w):
 
     w.delete("delint")
 
-    dbcel.dbcel()
-
     w.create_rectangle(23, 154, 23+366, 154+250, fill="#ffffff", width=0, tags=("delint")) #moje treningi box
     w.create_rectangle(412, 486, 412+366, 486+90, fill="#ffffff", width=0, tags=("delint")) #pasek box
     w.create_rectangle(412, 154, 412+366, 154+308, fill="#ffffff", width=0, tags=("delint")) #postep box
-    w.create_rectangle(412, 486, 412+(366 * (dbcel.postepCel_bd/dbceldeadline.postepCelEnd_bd)), 486+90, fill="#039CE8", width=0, tags=("delint")) #pasek postepu box
+
+    if (dbcel.postepCel_bd*100//dbceldeadline.postepCelEnd_bd) > 100:
+        w.create_rectangle(412, 486, 412+366, 486+90, fill="#039CE8", width=0, tags=("delint")) #pasek postepu box
+        w.create_text(431, 421.45, anchor=NW, text="Zaliczyles cel!", font=font3, tags=("delint"))
+        w.create_text(551, 517.88, anchor=NW, text="Twoj cel zostal osiagniety!", font=font3, tags=("delint"))
+    else:
+        w.create_rectangle(412, 486, 412+(366 * (dbcel.postepCel_bd/dbceldeadline.postepCelEnd_bd)), 486+90, fill="#039CE8", width=0, tags=("delint")) #pasek postepu box
+        w.create_text(431, 421.45, anchor=NW, text="Oby tak dalej!", font=font3, tags=("delint"))
+        w.create_text(551, 517.88, anchor=NW, text="Jestes na dobrej drodze!", font=font3, tags=("delint"))
 
     w.create_text(37, 167, anchor=NW, text="Moje treningi", font=font3, tags=("delint"))
     w.create_text(426, 167, anchor=NW, text="Postep", font=font3, tags=("delint"))
@@ -174,8 +184,6 @@ def interface2(root, w):
     w.create_text(431, 301.45, anchor=NW, text="Spalone kalorie: " + str(dbcel.kalorieCel_bd) + " / " + str(dbceldeadline.kalorieCelEnd_bd) + " kcal", font=font3, tags=("delint"))
     w.create_text(431, 341.45, anchor=NW, text="Wykonane treningi: " + str(dbcel.treningiCel_bd) + " / " + str(dbceldeadline.treningiCelEnd_bd), font=font3, tags=("delint"))
     w.create_text(431, 381.45, anchor=NW, text="Postep w procentach: " + str(dbcel.postepCel_bd*100//dbceldeadline.postepCelEnd_bd) + "%", font=font3, tags=("delint"))
-    w.create_text(431, 421.45, anchor=NW, text="Oby tak dalej!", font=font3, tags=("delint"))
-    w.create_text(551, 517.88, anchor=NW, text="Jestes na dobrej drodze!", font=font3, tags=("delint"))
 
     w.create_line(238, 128.5, 386, 128.5, fill="#ffffff", tags=("delint")) #linia menu
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint")) #linie do box'ow
@@ -185,6 +193,8 @@ def interface2(root, w):
         popupdodajtrening.popup2(root) #testowe okienko
 
     w.tag_bind(dodajtrening, "<ButtonPress-1>", clickDodajTrening) #wezel laczacy klikniecie z funkcja
+
+    sprawdzaniecelu.sprawdzanieCelu()
 
 def interface4(root, w):
 
@@ -200,6 +210,11 @@ def interface4(root, w):
     w.create_text(37, 167, anchor=NW, text="Moje dane", font=font3, tags=("delint"))
 
     zmiendane = w.create_text(145, 354, anchor=NW, text="Zmien dane", activefill="#D8D8D8", font=font2, tags=("delint")) #data - tekst dla karty Moje dane
+    wyzerujprogram = w.create_text(121, 403, anchor=NW, text="Wyzeruj program", activefill="#D8D8D8", font=font2, tags=("delint"))
+
+    cyclelogo = Tkinter.PhotoImage(file=r'cyclelogo.ppm')
+    root.cyclelogo = cyclelogo  #zapobiegam wrzuceniu obrazka do smieci
+    w.create_image((458,237), image=cyclelogo, anchor='nw', tags=("delint"))
 
     w.create_text(490, 460, anchor=NW, text="Aero - Dziennik rowerzysty", font=font3, tags=("delint")) #data - tekst dla karty Dane programu
     w.create_text(532, 489, anchor=NW, text="Tobiasz Dobrowolski", font=font5, tags=("delint"))
@@ -210,6 +225,11 @@ def interface4(root, w):
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint")) #linie do box'ow
 
     def clickZmienDane(event):
-        popupdane.popup1(root) #testowe okienko
+        popupdane.popup1(root)
 
     w.tag_bind(zmiendane, "<ButtonPress-1>", clickZmienDane) #wezel laczacy klikniecie z funkcja
+
+    def clickWyzerujProgram(event):
+        dbwyzerujprogram.wyzerujprogram()
+
+    w.tag_bind(wyzerujprogram, "<ButtonPress-1>", clickWyzerujProgram)

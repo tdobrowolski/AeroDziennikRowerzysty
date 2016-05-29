@@ -21,6 +21,7 @@ def dbodane():
     treningiTotal_bd = dbtreninglast.idLast_bd
     global czasTotal_bd
     czasTotal_bd = 0
+    global celeTotal_bd
 
     while i <= dbtreninglast.idLast_bd:
 
@@ -53,12 +54,14 @@ def dbodane():
                 if row_od2 == None:
                     break
 
-                global celeTotal_bd
                 celeTotal_bd = row_od2[4]
 
         i = i + 1
 
     con_od.close()
+
+    if (dbtreninglast.idLast_bd == 0):
+        celeTotal_bd = 0
 
     global sekundyCalkowite_bd
     global minutyCalkowite_bd

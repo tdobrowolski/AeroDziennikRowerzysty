@@ -89,10 +89,11 @@ def popup2(root):
 
         cur_ppdt2 = con_ppdt2.cursor()
 
+        kaloriePodane_bd = int(dbtest.waga_bd*(czas_spinbox/60)*(0.6345*srPredkoscPodany_bd*srPredkoscPodany_bd+0.7563*srPredkoscPodany_bd+36.725)/(3600))
         kilometryDodaj = dbcel.kilometryCel_bd + dystansPodany_bd
-        kalorieDodaj = dbcel.kalorieCel_bd + int(dbtest.waga_bd*(czas_spinbox/60)*(0.6345*srPredkoscPodany_bd*srPredkoscPodany_bd+0.7563*srPredkoscPodany_bd+36.725)/(3600))
+        kalorieDodaj = dbcel.kalorieCel_bd + kaloriePodane_bd
         treningiDodaj = dbcel.treningiCel_bd + 1
-        postepDodaj = dbcel.postepCel_bd + dystansPodany_bd + czas_spinbox + 1
+        postepDodaj = dbcel.postepCel_bd + dystansPodany_bd + kaloriePodane_bd + 1
 
         insert22 = (kilometryDodaj, kalorieDodaj, treningiDodaj, postepDodaj)
 

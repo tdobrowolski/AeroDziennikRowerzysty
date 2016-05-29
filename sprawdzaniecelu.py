@@ -9,8 +9,9 @@ import dbceldeadline
 import Tkinter
 from Tkinter import *
 import tkMessageBox
+import tkFont
 
-def sprawdzanieCelu(root):
+def sprawdzanieCelu():
 
     dbcel.dbcel()
     dbceldeadline.dbceldeadline()
@@ -44,4 +45,5 @@ def sprawdzanieCelu(root):
         con_sc.commit()
         con_sc.close()
 
-        tkMessageBox.showinfo("Uzyskales cel", "Brawo, zaliczyles swoj cel. Wybierz nowy lub sprobuj osiagnac go jeszcze raz. Zresetuj program aby zaktualizowac dane.")
+
+    #tkMessageBox.showerror("Cel osiagniety", "Brawo, zaliczyles swoj cel. Wybierz nowy lub sprobuj osiagnac gojeszcze raz. Oby tak dalej!")
