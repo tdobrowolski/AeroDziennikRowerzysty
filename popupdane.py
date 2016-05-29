@@ -3,7 +3,7 @@
 import Tkinter
 from Tkinter import *
 
-def popup1(root):
+def popup1(root, w):
     global top
     top = Toplevel(padx=10, pady=10) #otwarcie okienka popup
     top.title("Moje dane") #tytul okienka popup
@@ -64,6 +64,7 @@ def popup1(root):
     def callback():
         import sqlite3 as lite
         import sys
+        import interface
         con_ppd = lite.connect('baza.db') #ppd - popupdane (skrot od nazwy pliku)
         insert11 = (insert1.get(), insert2.get(), int(insert3.get()), var_0.get(), int(insert4.get()), int(insert5.get()), var_1.get(), 1)
         with con_ppd:
@@ -74,11 +75,7 @@ def popup1(root):
 
         con_ppd.close()
         top.destroy()
-
-
-    #mssg1 = StringVar()
-    #msssg1_l = Message(top, text="Po zmianie danych potrzebny jest reset programu.", relief=FLAT, width=180)
-    #msssg1_l.pack()
+        interface.interface1(root, w)
 
     b = Button(top, text="Zapisz", command=callback) #przycisk zapisz
     b.grid(row=7, column=1, pady=2)

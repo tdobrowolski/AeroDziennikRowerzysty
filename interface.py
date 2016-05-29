@@ -26,6 +26,8 @@ def interface3(root, w):
 
     w.delete("delint")
 
+    w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
+
     w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #wpisane box
     w.create_rectangle(412, 154, 412+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #obliczone box
 
@@ -78,13 +80,14 @@ def interface1(root, w):
     global font5
     font5 = tkFont.Font(family='Helvetica Neue Thin', size=15, ) #czcionka HN T 15
 
-    w.create_rectangle(0, 0, 800, 600, fill="#EEEEEF", width=0) #gorne tlo
-    w.create_rectangle(0, 0, 800, 130, fill="#039CE8", width=0) #gorne tlo
+    #w.create_rectangle(0, 0, 800, 600, fill="#EEEEEF", width=0) #gorne tlo
+    #w.create_rectangle(0, 0, 800, 130, fill="#039CE8", width=0) #gorne tlo
     w.create_rectangle(23, 154, 23+366, 199+154, fill="#ffffff", width=0, tags=("delint")) #cel box
     w.create_rectangle(23, 377, 23+366, 199+377, fill="#ffffff", width=0, tags=("delint")) #porady box
     w.create_rectangle(412, 154, 412+366, 422+154, fill="#ffffff", width=0, tags=("delint")) #ost trening box
 
-    w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff") #imie i nazwisko
+    w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
+
     w.create_text(37, 167, anchor=NW, text="Witaj " + dbtest.imie_bd + "!", font=font3, tags=("delint"))
     w.create_text(426, 167, anchor=NW, text="Ostatni trening", font=font3, tags=("delint"))
     w.create_text(37, 390, anchor=NW, text="Porady", font=font3, tags=("delint"))
@@ -126,6 +129,8 @@ def interface2(root, w):
         frame.destroy()
 
     w.delete("delint")
+
+    w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
 
     w.create_rectangle(23, 154, 23+366, 154+250, fill="#ffffff", width=0, tags=("delint")) #moje treningi box
     w.create_rectangle(412, 486, 412+366, 486+90, fill="#ffffff", width=0, tags=("delint")) #pasek box
@@ -204,6 +209,8 @@ def interface4(root, w):
 
     w.delete("delint")
 
+    w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
+
     w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #wpisane box
     w.create_rectangle(412, 154, 412+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #obliczone box
 
@@ -225,7 +232,7 @@ def interface4(root, w):
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint")) #linie do box'ow
 
     def clickZmienDane(event):
-        popupdane.popup1(root)
+        popupdane.popup1(root,w)
 
     w.tag_bind(zmiendane, "<ButtonPress-1>", clickZmienDane) #wezel laczacy klikniecie z funkcja
 

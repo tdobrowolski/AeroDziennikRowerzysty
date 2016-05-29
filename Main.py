@@ -47,6 +47,9 @@ def menuUp(w):
     w.tag_raise(menu3)
     w.tag_raise(menu4)
 
+w.create_rectangle(0, 0, 800, 600, fill="#EEEEEF", width=0) #gorne tlo
+w.create_rectangle(0, 0, 800, 130, fill="#039CE8", width=0) #gorne tlo
+
 interface.interface1(root, w) #zaladowanie karty Aktualnosci
 intro() #zaladowanie 3 sekundowego intro
 
