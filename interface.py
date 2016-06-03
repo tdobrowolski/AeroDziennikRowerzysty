@@ -226,7 +226,7 @@ def interface4(root, w):
     w.create_text(490, 460, anchor=NW, text="Aero - Dziennik rowerzysty", font=font3, tags=("delint")) #data - tekst dla karty Dane programu
     w.create_text(532, 489, anchor=NW, text="Tobiasz Dobrowolski", font=font5, tags=("delint"))
     w.create_text(580, 514, anchor=NW, text="2016", font=font5, tags=("delint"))
-    w.create_text(562, 537, anchor=NW, text="Wersja 0.9", font=font5, tags=("delint"))
+    w.create_text(562, 537, anchor=NW, text="Wersja 1.0.1", font=font5, tags=("delint"))
 
     w.create_line(608, 128.5, 756, 128.5, fill="#ffffff", tags=("delint")) #linia menu
     w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint")) #linie do box'ow
