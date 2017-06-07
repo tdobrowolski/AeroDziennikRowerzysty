@@ -28,11 +28,11 @@ def interface3(root, w):
 
     w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
 
-    w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #wpisane box
-    w.create_rectangle(412, 154, 412+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #obliczone box
+    w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #wpisane box
+    w.create_rectangle(412, 154, 412+366, 154+422, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #obliczone box
 
-    w.create_text(37, 167, anchor=NW, text="Wpisane dane", font=font3, tags=("delint"))
-    w.create_text(426, 167, anchor=NW, text="Obliczone dane", font=font3, tags=("delint"))
+    w.create_text(37, 167, anchor=NW, text="Wpisane dane", font=font6, tags=("delint"))
+    w.create_text(426, 167, anchor=NW, text="Obliczone dane", font=font6, tags=("delint"))
 
     w.create_text(42, 221.45, anchor=NW, text="Imie: " + dbtest.imie_bd, font=font3) #data - tekst dla karty Wpisane dane
     w.create_text(42, 261.45, anchor=NW, text="Nazwisko: " + dbtest.nazwisko_bd, font=font3, tags=("delint"))
@@ -48,9 +48,17 @@ def interface3(root, w):
     w.create_text(431, 381.45, anchor=NW, text="Wykonane treningi: " + str(dbodane.treningiTotal_bd), font=font3, tags=("delint"))
     w.create_text(431, 421.45, anchor=NW, text="Zdobyte cele: " + str(dbodane.celeTotal_bd), font=font3, tags=("delint"))
 
-    w.create_line(426, 128.5, 574, 128.5, fill="#ffffff", tags=("delint"))#linia menu
-    w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint"))#linie do box'ow
-    w.create_line(412, 203, 777, 203, fill="#0175AE", tags=("delint"))
+    wpisanedane = Tkinter.PhotoImage(file=r'wpisanedane.ppm')
+    root.wpisanedane = wpisanedane  #zapobiegam wrzuceniu obrazka do smieci
+    w.create_image((23, 466), image=wpisanedane, anchor='nw', tags=("delint"))
+
+    obliczonedane = Tkinter.PhotoImage(file=r'obliczonedane.ppm')
+    root.obliczonedane = obliczonedane  #zapobiegam wrzuceniu obrazka do smieci
+    w.create_image((412, 466), image=obliczonedane, anchor='nw', tags=("delint"))
+
+    w.create_line(436+3, 128.5, 554+3, 128.5, fill="#ffffff", tags=("delint"))#linia menu
+    w.create_line(23, 203, 388, 203, fill="#00AAE3", tags=("delint"))#linie do box'ow
+    w.create_line(412, 203, 777, 203, fill="#00AAE3", tags=("delint"))
 
 def interface1(root, w):
 
@@ -70,29 +78,32 @@ def interface1(root, w):
 
     #czcionki
     global font1
-    font1 = tkFont.Font(family='Helvetica Neue UltraLight', size=22, ) #czcionka HN UL
+    font1 = tkFont.Font(family='Helvetica Heavy', size=22, ) #czcionka HN UL
     global font2
-    font2 = tkFont.Font(family='Helvetica Neue Thin', size=23, ) #czcionka HN T 23
+    font2 = tkFont.Font(family='Lato Regular', size=23, ) #czcionka HN T 23
     global font3
-    font3 = tkFont.Font(family='Helvetica Neue Thin', size=19, ) #czcionka HN T 19
+    font3 = tkFont.Font(family='Lato Light', size=19, ) #czcionka HN T 19
     global font4
-    font4 = tkFont.Font(family='Helvetica Neue Thin', size=56, ) #czcionka HN T 56
+    font4 = tkFont.Font(family='HLato Medium', size=56, ) #czcionka HN T 56
     global font5
-    font5 = tkFont.Font(family='Helvetica Neue Thin', size=15, ) #czcionka HN T 15
+    font5 = tkFont.Font(family='Lato Light', size=15, ) #czcionka HN T 15
+    global font6
+    font6 = tkFont.Font(family='Lato Regular', size=19, ) #czcionka Lato Regular 19 do Headerow kart
+    font0 = tkFont.Font(family='Lato Light', size=18, )
 
     #w.create_rectangle(0, 0, 800, 600, fill="#EEEEEF", width=0) #gorne tlo
     #w.create_rectangle(0, 0, 800, 130, fill="#039CE8", width=0) #gorne tlo
-    w.create_rectangle(23, 154, 23+366, 199+154, fill="#ffffff", width=0, tags=("delint")) #cel box
-    w.create_rectangle(23, 377, 23+366, 199+377, fill="#ffffff", width=0, tags=("delint")) #porady box
-    w.create_rectangle(412, 154, 412+366, 422+154, fill="#ffffff", width=0, tags=("delint")) #ost trening box
+    w.create_rectangle(23, 154, 23+366, 199+154, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #cel box
+    w.create_rectangle(23, 377, 23+366, 199+377, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #porady box
+    w.create_rectangle(412, 154, 412+366, 422+154, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #ost trening box
 
     w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
 
-    w.create_text(37, 167, anchor=NW, text="Witaj " + dbtest.imie_bd + "!", font=font3, tags=("delint"))
-    w.create_text(426, 167, anchor=NW, text="Ostatni trening", font=font3, tags=("delint"))
-    w.create_text(37, 390, anchor=NW, text="Porady", font=font3, tags=("delint"))
+    w.create_text(37, 167, anchor=NW, text="Witaj " + dbtest.imie_bd + "!", font=font6, tags=("delint"))
+    w.create_text(426, 167, anchor=NW, text="Ostatni trening", font=font6, tags=("delint"))
+    w.create_text(37, 390, anchor=NW, text="Porady", font=font6, tags=("delint"))
 
-    w.create_text(42, 441.45, anchor=NW, text=dbporady.porada1, font=font3, tags=("delint"))
+    w.create_text(42, 441.45, anchor=NW, text=dbporady.porada1, font=font0, tags=("delint"))
 
     w.create_text(183.5, 229.45, anchor=NW, text="Cel: " + dbtest.cel_bd, font=font3, tags=("delint")) #data - tekst dla karty Witaj
     w.create_text(219, 261.45, anchor=NW, text=str(dbcel.postepCel_bd*100//dbceldeadline.postepCelEnd_bd) + "%", font=font4, tags=("delint"))
@@ -107,10 +118,10 @@ def interface1(root, w):
     w.create_text(431, 461.45, anchor=NW, text="Warunki atmosferyczne: " + dbtreninglast.pogodaLast_bd, font=font3, tags=("delint"))
     w.create_text(431, 501.45, anchor=NW, text="Notatki: " + dbtreninglast.notatkiLast_bd, font=font3, tags=("delint"))
 
-    w.create_line(46, 128.5, 194, 128.5, fill="#ffffff", tags=("delint"))#linia menu
-    w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint"))#linie do box'ow
-    w.create_line(23, 423, 388, 423, fill="#0175AE", tags=("delint"))
-    w.create_line(412, 203, 777, 203, fill="#0175AE", tags=("delint"))
+    w.create_line(59, 128.5, 187, 128.5, fill="#ffffff", tags=("delint"))#linia menu
+    w.create_line(23, 203, 388, 203, fill="#00AAE3", tags=("delint"))#linie do box'ow
+    w.create_line(23, 423, 388, 423, fill="#00AAE3", tags=("delint"))
+    w.create_line(412, 203, 777, 203, fill="#00AAE3", tags=("delint"))
 
     wybrana_ikona = Tkinter.PhotoImage(file=r'ikona'+str(dbceldeadline.uId)+'.ppm')
     root.wybrana_ikona = wybrana_ikona  #zapobiegam wrzuceniu obrazka do smieci
@@ -132,12 +143,12 @@ def interface2(root, w):
 
     w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
 
-    w.create_rectangle(23, 154, 23+366, 154+250, fill="#ffffff", width=0, tags=("delint")) #moje treningi box
-    w.create_rectangle(412, 486, 412+366, 486+90, fill="#ffffff", width=0, tags=("delint")) #pasek box
-    w.create_rectangle(412, 154, 412+366, 154+308, fill="#ffffff", width=0, tags=("delint")) #postep box
+    w.create_rectangle(23, 154, 23+366, 154+250, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #moje treningi box
+    w.create_rectangle(412, 486, 412+366, 486+90, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #pasek box
+    w.create_rectangle(412, 154, 412+366, 154+308, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #postep box
 
     if (dbcel.postepCel_bd*100//dbceldeadline.postepCelEnd_bd) > 100:
-        w.create_rectangle(412, 486, 412+366, 486+90, fill="#039CE8", width=0, tags=("delint")) #pasek postepu box
+        w.create_rectangle(412, 486, 412+366, 486+90, fill="#00AAE3", width=0, tags=("delint")) #pasek postepu box
         w.create_text(431, 421.45, anchor=NW, text="Zaliczyles cel!", font=font3, tags=("delint"))
         w.create_text(551, 517.88, anchor=NW, text="Twoj cel zostal osiagniety!", font=font3, tags=("delint"))
     else:
@@ -145,8 +156,8 @@ def interface2(root, w):
         w.create_text(431, 421.45, anchor=NW, text="Oby tak dalej!", font=font3, tags=("delint"))
         w.create_text(551, 517.88, anchor=NW, text="Jestes na dobrej drodze!", font=font3, tags=("delint"))
 
-    w.create_text(37, 167, anchor=NW, text="Moje treningi", font=font3, tags=("delint"))
-    w.create_text(426, 167, anchor=NW, text="Postep", font=font3, tags=("delint"))
+    w.create_text(37, 167, anchor=NW, text="Moje treningi", font=font6, tags=("delint"))
+    w.create_text(426, 167, anchor=NW, text="Postep", font=font6, tags=("delint"))
 
     ###
 
@@ -181,8 +192,8 @@ def interface2(root, w):
 
     ###
 
-    w.create_rectangle(27, 486, 27+361, 486+90, fill="#ffffff", width=0, tags=("delint"))
-    dodajtrening = w.create_text(116, 517, anchor=NW, text="Dodaj nowy trening", activefill="#737172", font=font2, tags=("delint")) #plus do FAB
+    w.create_rectangle(27, 486, 27+361, 486+90, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint"))
+    dodajtrening = w.create_text(103, 517, anchor=NW, text="Dodaj nowy trening", activefill="#737172", font=font2, tags=("delint")) #plus do FAB
 
     w.create_text(431, 221.45, anchor=NW, text="Wybrany cel: " + dbtest.cel_bd, font=font3, tags=("delint")) #data - tekst dla karty Postęp + Pasek postepu
     w.create_text(431, 261.45, anchor=NW, text="Przejechane kilometry: " + str(dbcel.kilometryCel_bd) + " / " +  str(dbceldeadline.kilometryCelEnd_bd) + " km", font=font3, tags=("delint"))
@@ -190,9 +201,9 @@ def interface2(root, w):
     w.create_text(431, 341.45, anchor=NW, text="Wykonane treningi: " + str(dbcel.treningiCel_bd) + " / " + str(dbceldeadline.treningiCelEnd_bd), font=font3, tags=("delint"))
     w.create_text(431, 381.45, anchor=NW, text="Postep w procentach: " + str(dbcel.postepCel_bd*100//dbceldeadline.postepCelEnd_bd) + "%", font=font3, tags=("delint"))
 
-    w.create_line(238, 128.5, 386, 128.5, fill="#ffffff", tags=("delint")) #linia menu
-    w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint")) #linie do box'ow
-    w.create_line(412, 203, 777, 203, fill="#0175AE", tags=("delint"))
+    w.create_line(251, 128.5, 376, 128.5, fill="#ffffff", tags=("delint")) #linia menu
+    w.create_line(23, 203, 388, 203, fill="#00AAE3", tags=("delint")) #linie do box'ow
+    w.create_line(412, 203, 777, 203, fill="#00AAE3", tags=("delint"))
 
     def clickDodajTrening(event):
         popupdodajtrening.popup2(root) #testowe okienko
@@ -211,25 +222,29 @@ def interface4(root, w):
 
     w.create_text(29, 29, anchor=NW, text=dbtest.imie_bd + " " + dbtest.nazwisko_bd, font=font1, fill="#ffffff", tags=("delint")) #imie i nazwisko
 
-    w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #wpisane box
-    w.create_rectangle(412, 154, 412+366, 154+422, fill="#ffffff", width=0, tags=("delint")) #obliczone box
+    w.create_rectangle(23, 154, 23+366, 154+422, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #wpisane box
+    w.create_rectangle(412, 154, 412+366, 154+422, fill="#ffffff", width=1, outline='#EBEBEB', tags=("delint")) #obliczone box
 
-    w.create_text(37, 167, anchor=NW, text="Moje dane", font=font3, tags=("delint"))
+    w.create_text(37, 167, anchor=NW, text="Moje dane", font=font6, tags=("delint"))
 
-    zmiendane = w.create_text(145, 354, anchor=NW, text="Zmien dane", activefill="#D8D8D8", font=font2, tags=("delint")) #data - tekst dla karty Moje dane
-    wyzerujprogram = w.create_text(121, 403, anchor=NW, text="Wyzeruj program", activefill="#D8D8D8", font=font2, tags=("delint"))
+    zmiendane = w.create_text(145, 304, anchor=NW, text="Zmien dane", activefill="#D8D8D8", font=font6, tags=("delint")) #data - tekst dla karty Moje dane
+    wyzerujprogram = w.create_text(121, 353, anchor=NW, text="Wyzeruj program", activefill="#D8D8D8", font=font6, tags=("delint"))
 
     cyclelogo = Tkinter.PhotoImage(file=r'cyclelogo.ppm')
     root.cyclelogo = cyclelogo  #zapobiegam wrzuceniu obrazka do smieci
     w.create_image((458,237), image=cyclelogo, anchor='nw', tags=("delint"))
 
+    cyclebck = Tkinter.PhotoImage(file=r'cyclebck.ppm')
+    root.cyclebck = cyclebck  #zapobiegam wrzuceniu obrazka do smieci
+    w.create_image((23, 447), image=cyclebck, anchor='nw', tags=("delint"))
+
     w.create_text(490, 460, anchor=NW, text="Aero - Dziennik rowerzysty", font=font3, tags=("delint")) #data - tekst dla karty Dane programu
     w.create_text(532, 489, anchor=NW, text="Tobiasz Dobrowolski", font=font5, tags=("delint"))
-    w.create_text(580, 514, anchor=NW, text="2016", font=font5, tags=("delint"))
-    w.create_text(562, 537, anchor=NW, text="Wersja 1.0.1", font=font5, tags=("delint"))
+    w.create_text(556, 514, anchor=NW, text="2016 - 2017", font=font5, tags=("delint"))
+    w.create_text(562, 537, anchor=NW, text="Wersja 2.0", font=font5, tags=("delint"))
 
-    w.create_line(608, 128.5, 756, 128.5, fill="#ffffff", tags=("delint")) #linia menu
-    w.create_line(23, 203, 388, 203, fill="#0175AE", tags=("delint")) #linie do box'ow
+    w.create_line(618+3, 128.5, 734, 128.5, fill="#ffffff", tags=("delint")) #linia menu
+    w.create_line(23, 203, 388, 203, fill="#00AAE3", tags=("delint")) #linie do box'ow
 
     def clickZmienDane(event):
         popupdane.popup1(root,w)

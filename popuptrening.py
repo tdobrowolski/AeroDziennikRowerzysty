@@ -56,6 +56,7 @@ def popup3(nr_treningu):
     w2 = Tkinter.Canvas(top2, bd=0, height=365, width=422) #grafiki
 
     font3 = tkFont.Font(family='Helvetica Neue Thin', size=19) #czcionka HN T 19
+    font6 = tkFont.Font(family='Lato Regular', size=19, )
 
     w2.create_text(19, 67.45, anchor=NW, text=dataWybrana_bd, font=font3, tags=("delint")) #data - tekst dla karty Ostatni trening
     w2.create_text(298, 67.45, anchor=NW, text=godzinaWybrana_bd, font=font3, tags=("delint"))
@@ -67,7 +68,7 @@ def popup3(nr_treningu):
     w2.create_text(19, 307.45, anchor=NW, text="Warunki atmosferyczne: " + pogodaWybrana_bd, font=font3, tags=("delint"))
     w2.create_text(19, 347.45, anchor=NW, text="Notatki: " + notatkiWybrana_bd, font=font3, tags=("delint"))
 
-    w2.create_text(14, 13, anchor=NW, text="Trening " + str(idWybrana_bd), font=font3, tags=("delint"))
+    w2.create_text(14, 13, anchor=NW, text="Trening " + str(idWybrana_bd), font=font6, tags=("delint"))
 
     w2.create_line(0, 49, 365, 49, fill="#0175AE", tags=("delint"))
 
